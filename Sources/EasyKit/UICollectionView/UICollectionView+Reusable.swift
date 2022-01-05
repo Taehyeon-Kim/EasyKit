@@ -57,24 +57,30 @@ public extension UICollectionView {
         }
     }
     
-    final func dequeueHeaderView<T: UICollectionReusableView>(forIndexPath indexPath: IndexPath) -> T {
+    final func dequeueHeaderView<T: UICollectionReusableView>(
+        forIndexPath indexPath: IndexPath,
+        viewType: T.Type = T.self
+    ) -> T {
         guard let view = dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: T.reuseIdentifier,
+            withReuseIdentifier: viewType.reuseIdentifier,
             for: indexPath
         ) as? T else {
-            fatalError("Failed to dequeue a header view with identifier \(T.reuseIdentifier) ")
+            fatalError("Failed to dequeue a header view with identifier \(viewType.reuseIdentifier)")
         }
         return view
     }
     
-    final func dequeueFooterView<T: UICollectionReusableView>(forIndexPath indexPath: IndexPath) -> T {
+    final func dequeueFooterView<T: UICollectionReusableView>(
+        forIndexPath indexPath: IndexPath,
+        viewType: T.Type = T.self
+    ) -> T {
         guard let view = dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: T.reuseIdentifier,
+            withReuseIdentifier: viewType.reuseIdentifier,
             for: indexPath
         ) as? T else {
-            fatalError("Failed to dequeue a footer view with identifier \(T.reuseIdentifier) ")
+            fatalError("Failed to dequeue a footer view with identifier \(viewType.reuseIdentifier)")
         }
         return view
     }
