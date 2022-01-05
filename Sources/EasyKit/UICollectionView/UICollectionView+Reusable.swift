@@ -57,31 +57,24 @@ public extension UICollectionView {
         }
     }
     
-    final func dequeueHeaderView<T: UICollectionReusableView>(
-        forIndexPath indexPath: IndexPath,
+    final func dequeueReusableSupplementaryView<T: UICollectionReusableView> (
+        ofKind elementKind: String,
+        for indexPath: IndexPath,
         viewType: T.Type = T.self
     ) -> T {
-        guard let view = dequeueReusableSupplementaryView(
-            ofKind: UICollectionView.elementKindSectionHeader,
+        let view = self.dequeueReusableSupplementaryView(
+            ofKind: elementKind,
             withReuseIdentifier: viewType.reuseIdentifier,
             for: indexPath
-        ) as? T else {
-            fatalError("Failed to dequeue a header view with identifier \(viewType.reuseIdentifier)")
+        )
+        guard let typedView = view as? T else {
+            fatalError(
+                "Failed to dequeue a supplementary view with identifier \(viewType.reuseIdentifier) "
+                + "matching type \(viewType.self). "
+                + "Check that the reuseIdentifier is set properly in your XIB/Storyboard "
+                + "and that you registered the supplementary view beforehand"
+            )
         }
-        return view
-    }
-    
-    final func dequeueFooterView<T: UICollectionReusableView>(
-        forIndexPath indexPath: IndexPath,
-        viewType: T.Type = T.self
-    ) -> T {
-        guard let view = dequeueReusableSupplementaryView(
-            ofKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: viewType.reuseIdentifier,
-            for: indexPath
-        ) as? T else {
-            fatalError("Failed to dequeue a footer view with identifier \(viewType.reuseIdentifier)")
-        }
-        return view
+        return typedView
     }
 }
