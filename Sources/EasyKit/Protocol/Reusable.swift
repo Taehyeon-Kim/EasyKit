@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 public protocol Reusable: AnyObject {
     // To use when registering and dequeuing a reusable cell
