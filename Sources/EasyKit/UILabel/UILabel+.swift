@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
     func addLabelSpacing(kernValue: Double = -0.6, lineSpacing: CGFloat = 4.0) {
         if let labelText = text, labelText.count > 0 {
             let paragraphStyle = NSMutableParagraphStyle()
