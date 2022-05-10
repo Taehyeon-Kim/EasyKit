@@ -23,6 +23,15 @@ extension UIView {
         self.layer.mask = shapeLayer
     }
     
+    /*
+     Description: Corner Radius
+     usage: makeRoundedSpecificCorner(corners: [.layerMinXMinYCorner, .layerMinXMinXCorner]
+     */
+    public func makeRoundedSpecificCorner(_ corners: [CACornerMask], cornerRadius: Double) {
+        self.layer.maskedCorners = CACornerMask
+        self.layer.cornerRadius = cornerRadius
+    }
+    
     // UIView 여러 개 인자로 받아서 한 번에 addSubview
     public func addSubviews(_ views: UIView...) {
         for view in views {
