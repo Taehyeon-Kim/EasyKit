@@ -23,9 +23,9 @@ extension UIView {
         self.layer.mask = shapeLayer
     }
     
-    /*
+    /**
      Description: Corner Radius
-     usage: makeRoundedSpecificCorner([.layerMinXMinYCorner, .layerMinXMinXCorner]
+     usage: makeRoundedSpecificCorner([.layerMinXMinYCorner, .layerMinXMinXCorner])
      */
     public func makeRoundedSpecificCorner(_ corners: [CACornerMask], cornerRadius: Double = 1.0) {
         self.layer.maskedCorners = CACornerMask
