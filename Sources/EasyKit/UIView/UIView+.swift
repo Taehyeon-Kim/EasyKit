@@ -27,6 +27,8 @@ extension UIView {
      Description: Corner Radius
      usage: makeRoundedSpecificCorner([.layerMinXMinYCorner, .layerMinXMinXCorner])
      */
+    // 11 이상의 버전에서만 적용 가능
+    @available(iOS 11.0, *)
     public func makeRoundedSpecificCorner(_ corners: CACornerMask, cornerRadius: Double = 1.0) {
         self.layer.maskedCorners = corners
         self.layer.cornerRadius = cornerRadius
